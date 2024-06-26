@@ -17,6 +17,14 @@ public class RunRepository {
         return runs;
     }
 
+    Run findById(Integer id){
+        return runs.stream()
+                .filter(run -> run.id() == id)
+                .findFirst()
+                .get();
+    }
+
+
 
 
 
