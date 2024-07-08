@@ -28,9 +28,12 @@ public class Application {
     CommandLineRunner runner() {
         return args -> {
             Run run = new Run(
-                    1,"first Run",LocalDateTime.now(),
+                    1,
+                    "first Run",
+                    LocalDateTime.now(),
                     LocalDateTime.now().plus(1, ChronoUnit.HOURS),
-                    5,Location.OUTDOOR);
+                    5,
+                    Location.OUTDOOR);
             log.info("Run: " + run);
 
         };
