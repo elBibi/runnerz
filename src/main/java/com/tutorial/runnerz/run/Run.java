@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Positive;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public record Run(
@@ -21,10 +22,20 @@ public record Run(
     public Run {
         final Logger log = LoggerFactory.getLogger(Run.class);
         log.info("Executing --> Run --> Constructor");
+
         if (completedOn.isBefore(startedOn)) {
             throw new IllegalArgumentException("Complete On must be after Started On");
         }
     }
+
+    public Duration getDuration() {
+        return Duration.between(startedOn,completedOn);
+    }
+
+    public Integer getAvgPace() {
+        return  Math.toIntExact(getDuration().toMinutesPart() / miles);
+    }
+
 
 //using validation API
 
