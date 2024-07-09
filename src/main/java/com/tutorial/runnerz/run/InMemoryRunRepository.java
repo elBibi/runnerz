@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class InMemoryRepository implements RunRepository{
-    private static final Logger log = LoggerFactory.getLogger(InMemoryRepository.class);
+public class InMemoryRunRepository implements RunRepository{
+    private static final Logger log = LoggerFactory.getLogger(InMemoryRunRepository.class);
 
     // eventually replace by DB
     private List<Run> runs = new ArrayList<>();

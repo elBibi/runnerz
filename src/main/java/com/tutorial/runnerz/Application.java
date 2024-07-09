@@ -23,9 +23,9 @@ public class Application {
     public static void main(String[] args) {
         ApplicationContext apc = SpringApplication.run(Application.class, args);
 
-        for (String s : apc.getBeanDefinitionNames()) {
-            log.info("Load into IOC Container->"+s);
-        }
+//        for (String s : apc.getBeanDefinitionNames()) {
+//            log.info("Load into IOC Container->"+s);
+//        }
         log.info("Application loaded Successfully");
     }
 

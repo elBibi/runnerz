@@ -17,10 +17,19 @@ public class RunController {
 
     private static final Logger log = LoggerFactory.getLogger(RunController.class);
 
-    private final InMemoryRepository runRepository;
+    // This Repository used InMemory DB.
+    //private final InMemoryRunRepository runRepository;
+
+    // Thisa use JDBC with H2
+    private final jdbcRunRepository runRepository;
 
     @Autowired
-    public RunController(InMemoryRepository runRepository){
+
+    // This Repository used InMemory DB.
+    //public RunController(InMemoryRunRepository runRepository){
+
+    // This Run with JDBC on H2
+    public RunController(jdbcRunRepository runRepository){
         log.info("Executing --> RunController --> @AUtowired RunController Constructor =" + runRepository.getClass().getName()  );
         this.runRepository = runRepository;
     }
