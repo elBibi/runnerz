@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +25,13 @@ public class RunController {
     private final jdbcRunRepository runRepository;
 
     @Autowired
-
     // This Repository used InMemory DB.
     //public RunController(InMemoryRunRepository runRepository){
 
     // This Run with JDBC on H2
-    public RunController(jdbcRunRepository runRepository){
+    public RunController(@Qualifier("jdbcRunRepository") RunRepository runRepository){
         log.info("Executing --> RunController --> @AUtowired RunController Constructor =" + runRepository.getClass().getName()  );
-        this.runRepository = runRepository;
+        this.runRepository = (jdbcRunRepository) runRepository;
     }
 
     @GetMapping("")

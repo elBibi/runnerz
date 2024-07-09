@@ -1,22 +1,19 @@
 package com.tutorial.runnerz.run;
 
-import  org.springframework.jdbc.core.simple.JdbcClient;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import  org.springframework.jdbc.core.simple.JdbcClient;
-import org.springframework.util.Assert;
-
 @Repository
+@Primary
+@Qualifier("jdbcRunRepository")
 public class jdbcRunRepository implements RunRepository {
     private static final Logger log = LoggerFactory.getLogger(jdbcRunRepository.class);
 
