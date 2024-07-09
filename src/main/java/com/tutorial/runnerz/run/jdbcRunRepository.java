@@ -17,10 +17,7 @@ import java.util.Optional;
 public class jdbcRunRepository implements RunRepository {
     private static final Logger log = LoggerFactory.getLogger(jdbcRunRepository.class);
 
-    // eventually replace by DB
-
     private final JdbcClient jdbcClient;
-
 
     public jdbcRunRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
@@ -45,7 +42,7 @@ public class jdbcRunRepository implements RunRepository {
 
     //POST Create a new run
     public void create(Run run) {
-        log.info("Executing --> jdbcRunRepository --> Creating Run =" + run);
+        log.info("Executing --> jdbcRunRepository --> Create Run =>>" + run);
         int updated = jdbcClient.sql("insert into run (id, title, started_on, completed_on,miles, location) values (?, ?, ?, ?, ?, ?)")
                 .params(List.of(run.id(),
                         run.title(),
@@ -90,16 +87,19 @@ public class jdbcRunRepository implements RunRepository {
     }
 
 
+
+
     //Count
     public int count() {
-        log.info("Executing --> jdbcRunRepository --> count()");
+        log.info("Executing --> jdbcRunRepository --> count()="+jdbcClient.sql("select count(*) from run").query().listOfRows().size());
+        log.info("-------What's in table Run ="+jdbcClient.sql("select * from run").query(Run.class).list().toString());
         return jdbcClient.sql("select count(*) from run").query().listOfRows().size();
     }
 
     //Save All
     public void saveAll(List<Run> runs) {
         log.info("Executing --> jdbcRunRepository --> saveAll()");
-        runs.forEach(this::create);
+        runs.stream().forEach(this::create);
     }
 
     //find by location

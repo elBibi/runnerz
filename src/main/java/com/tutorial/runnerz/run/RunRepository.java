@@ -17,4 +17,5 @@ public interface RunRepository {
 
     int count();
 
+    void saveAll(List<Run> runs);
 }

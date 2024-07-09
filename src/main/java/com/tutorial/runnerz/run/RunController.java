@@ -21,7 +21,7 @@ public class RunController {
     // This Repository used InMemory DB.
     //private final InMemoryRunRepository runRepository;
 
-    // Thisa use JDBC with H2
+    // This use JDBC with H2
     private final jdbcRunRepository runRepository;
 
     @Autowired
