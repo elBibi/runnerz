@@ -18,4 +18,8 @@ public interface RunRepository {
     int count();
 
     void saveAll(List<Run> runs);
+
+    void deleteAll();
+
+    //void deleteAll();
 }

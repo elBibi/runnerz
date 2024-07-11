@@ -25,6 +25,14 @@ public class InMemoryRunRepository implements RunRepository{
         return runs.size();
     }
 
+    //Delete All
+    public void deleteAll(){
+        log.info("Executing --> RunRepository --> deleteAll()");
+        runs.clear();
+    }
+
+
+
     @Override
     public void saveAll(List<Run> runs) {
         log.info("Executing --> InMemoryRepository --> saveAll()");

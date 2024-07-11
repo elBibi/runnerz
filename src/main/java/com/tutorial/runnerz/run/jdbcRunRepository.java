@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Primary
 @Qualifier("jdbcRunRepository")
 public class jdbcRunRepository implements RunRepository {
     private static final Logger log = LoggerFactory.getLogger(jdbcRunRepository.class);
@@ -22,6 +21,15 @@ public class jdbcRunRepository implements RunRepository {
     public jdbcRunRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
+
+    //Delete All
+    public void deleteAll() {
+        log.info("Executing --> jdbcRunRepository --> deleteAll()");
+        jdbcClient.sql("delete from run")
+                .update();
+    }
+
+
 
     //GET findAll
     public List<Run> findAll() {

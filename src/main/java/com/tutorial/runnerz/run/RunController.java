@@ -22,16 +22,23 @@ public class RunController {
     //private final InMemoryRunRepository runRepository;
 
     // This use JDBC with H2
-    private final jdbcRunRepository runRepository;
+    //private final jdbcRunRepository runRepository;
+
+    // This use JDBC with MYSQL
+    private final MySqlRunRepository runRepository;
+
 
     @Autowired
     // This Repository used InMemory DB.
     //public RunController(InMemoryRunRepository runRepository){
 
     // This Run with JDBC on H2
-    public RunController(@Qualifier("jdbcRunRepository") RunRepository runRepository){
+    //public RunController(@Qualifier("jdbcRunRepository") RunRepository runRepository){
+
+            // This Run with JDBC on H2
+     public RunController(@Qualifier("mySqlRunRepository") RunRepository runRepository){
         log.info("Executing --> RunController --> @AUtowired RunController Constructor =" + runRepository.getClass().getName()  );
-        this.runRepository = (jdbcRunRepository) runRepository;
+        this.runRepository = (MySqlRunRepository) runRepository;
     }
 
     @GetMapping("")
