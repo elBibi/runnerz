@@ -4,6 +4,18 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Ignore all files in the logs/ directory
+logs/
+
+# Other files and directories to ignore
+*.log
+target/
+
+
+
+
+
+
 ### STS ###
 .apt_generated
 .classpath
