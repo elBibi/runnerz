@@ -70,6 +70,6 @@ public class RunController {
     @GetMapping("/hello")
     String home(){          // public by default
         log.info("Executing --> RunController --> home()");
-        return "Hello, runnerz";
+        return "Hello, runnerz From MiK";
     }
 }

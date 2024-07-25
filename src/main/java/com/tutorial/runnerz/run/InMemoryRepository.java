@@ -53,15 +53,15 @@ public void update(Run run, Integer id) {
 
 //Delete
 public void delete(Integer id){
-        log.info("Executing -->  InMemoryRepository   Deleting Run with id: " + id);
+        log.info("Executing -->  InMemoryRepository --> Deleting Run with id: " + id);
         runs.removeIf(run -> run.id().equals(id));
     }
 
 
-    //Lets load some data without Injection
+    //Initial Constructor - Lets load some data without Injection
     @PostConstruct
     private void init(){
-        log.info("Executing --> InMemory--> @PostConstruct init()");
+        log.info("Executing --> InMemoryRepository--> @PostConstruct init()");
         runs.add(new  Run(
                 1,
                 "Monday Morning",
