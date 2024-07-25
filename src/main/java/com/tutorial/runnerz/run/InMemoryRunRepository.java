@@ -58,28 +58,4 @@ public void delete(Integer id){
     }
 
 
-    //Lets load some data without Injection
-    @PostConstruct
-    private void init(){
-        log.info("Executing --> RunRepository--> @PostConstruct init()");
-        runs.add(new  Run(
-                1,
-                "Monday Morning",
-                LocalDateTime.now(),
-                LocalDateTime.now().plus(60, ChronoUnit.MINUTES),
-                3,
-                Location.INDOOR));
-        log.info("   Adding Run: " + runs.get(0));
-        runs.add(new Run(
-                2,
-                "Wednesday Evening",
-                LocalDateTime.now(),
-                LocalDateTime.now().plus(60,ChronoUnit.MINUTES),
-                6,
-                Location.INDOOR
-        ));
-        log.info("   Adding Run: " + runs.get(1));
-    }
-
-
 }

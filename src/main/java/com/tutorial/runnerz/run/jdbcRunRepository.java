@@ -20,10 +20,7 @@ import org.springframework.util.Assert;
 public class jdbcRunRepository implements RunRepository {
     private static final Logger log = LoggerFactory.getLogger(jdbcRunRepository.class);
 
-    // eventually replace by DB
-
     private final JdbcClient jdbcClient;
-
 
     public jdbcRunRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;

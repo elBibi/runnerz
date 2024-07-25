@@ -21,7 +21,7 @@ public record Run(
     // validate the data
     public Run {
         final Logger log = LoggerFactory.getLogger(Run.class);
-        log.info("Executing --> Run --> Constructor");
+        log.info("Executing --> Run --> Constructor, Just Validate Date");
 
         if (completedOn.isBefore(startedOn)) {
             throw new IllegalArgumentException("Complete On must be after Started On");

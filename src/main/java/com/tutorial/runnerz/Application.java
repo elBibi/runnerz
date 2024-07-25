@@ -22,33 +22,7 @@ public class Application {
 
     public static void main(String[] args) {
         ApplicationContext apc = SpringApplication.run(Application.class, args);
-
-//        for (String s : apc.getBeanDefinitionNames()) {
-//            log.info("Load into IOC Container->"+s);
-//        }
         log.info("Application loaded Successfully");
-    }
-
-    @Bean
-    CommandLineRunner runner() {
-        return args -> {
-            Run run = new Run(
-                    1,
-                    "first Run",
-                    LocalDateTime.now(),
-                    LocalDateTime.now().plus(1, ChronoUnit.HOURS),
-                    5,
-                    Location.OUTDOOR);
-            log.info("Run: " + run);
-
-        };
-
-
-        //Example
-        //	var welcomeMsg = new WelcomeMessage();
-        //	System.out.println(welcomeMsg.getWelcomeMessage());
-        //}
-
     }
 
 }
