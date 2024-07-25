@@ -19,17 +19,17 @@ public class InMemoryRunRepository implements RunRepository{
     private List<Run> runs = new ArrayList<>();
 
     public int count(){
-        log.info("Executing --> RunRepository --> count()");
+        log.info("Executing --> InMemoryRepository --> count()");
         return runs.size();
     }
 
     public List<Run> findAll(){
-        log.info("Executing --> RunRepository --> findAll()");
+        log.info("Executing --> InMemoryRepository --> findAll()");
         return runs;
     }
 
     public Optional<Run> findById(Integer id){
-        log.info("Executing --> RunRepository --> findById()");
+        log.info("Executing --> InMemoryRepository --> findById()");
         return runs.stream()
                 .filter(run -> run.id() == id)
                 .findFirst();
@@ -38,13 +38,13 @@ public class InMemoryRunRepository implements RunRepository{
     //private int calculateDaysBetweenDate(Date date1,)
 //POST Create a new run
     public void create(Run run){
-        log.info("Executing --> RunRepository --> Creating Run =" + run);
+        log.info("Executing --> InMemoryRepository --> Creating Run =" + run);
         runs.add(run);
     }
 
 //Update
 public void update(Run run, Integer id) {
-        log.info("Executing --> RunRepository --> Updating Run with id: " + id);
+        log.info("Executing --> InMemoryRepository --> Updating Run with id: " + id);
         Optional<Run> existingRun = findById(id);
         if (existingRun.isPresent()) {
             runs.set(runs.indexOf(existingRun.get()),run);
@@ -53,7 +53,7 @@ public void update(Run run, Integer id) {
 
 //Delete
 public void delete(Integer id){
-        log.info("Executing -->  RunRepository -->   Deleting Run with id: " + id);
+        log.info("Executing -->  InMemoryRepository -->   Deleting Run with id: " + id);
         runs.removeIf(run -> run.id().equals(id));
     }
 
