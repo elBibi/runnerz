@@ -25,53 +25,33 @@ public class MySqlRunRepository implements RunRepository {
 
     @Override
     public void deleteAll() {
-        log.info("Executing --> jdbcRunRepository --> deleteAll()");
+        log.info("Executing --> MySqlRepository --> deleteAll()");
         jdbcTemplate.update("DELETE FROM run");
     }
 
     @Override
     public List<Run> findAll() {
-        log.info("Executing --> jdbcRunRepository --> findAll()");
+        log.info("Executing --> MySqlRepository --> findAll()");
         return jdbcTemplate.query("SELECT * FROM run", new RunRowMapper());
     }
 
     @Override
     public Optional<Run> findById(Integer id) {
-        log.info("Executing --> jdbcRunRepository --> findById()");
+        log.info("Executing --> MySqlRepository --> findById()");
         return jdbcTemplate.query("SELECT * FROM run WHERE id = ?", new Object[]{id}, new RunRowMapper())
                 .stream()
                 .findFirst();
     }
 
-//    // POST Create a new run
-//    @Override
-//    public void create(Run run) {
-//        log.info("Executing --> MySqlRunRepository --> Create Run =>>" + run);
-//
-//        // Log the length of the location field
-//        String locationS = run.location().toString();
-//        log.info("Location length: " + locationS.length());
-//
-//        if (locationS.length() > 50) {
-//            throw new IllegalArgumentException("Location length exceeds the maximum allowed length of 255 characters");
-//        }
-//
-//        String sql = "INSERT INTO run (id, title, started_on, completed_on, miles, location) VALUES (?, ?, ?, ?, ?,locationS)";
-//        log.info("SQL Statement: " + sql);
-//        log.info("Parameters: id = " + run.id() + ", title = " + run.title() + ", startedOn = " + run.startedOn() + ", completedOn = " + run.completedOn() + ", miles = " + run.miles() + ", location = " + locationS);
-//
-//        int updated = jdbcTemplate.update(sql, run.id(), run.title(), run.startedOn(), run.completedOn(), run.miles(), locationS);
-//        Assert.state(updated == 1, "Failed to create run " + run.id());
-//    }
 
     // POST Create a new run
     @Override
     public void create(Run run) {
         log.info("Executing --> MySqlRunRepository --> Create Run =>>" + run);
         String sql = "INSERT INTO run (id, title, started_on, completed_on, miles, location) VALUES (?, ?, ?, ?, ?, ?)";
-        log.info("SQL Statement:-------> " + sql);
+        log.info("-->SQL Statement:-------> " + sql);
         String locationS = run.location().name();
-        log.info("Parameters: id = " + run.id() + ", title = " + run.title() + ", startedOn = " + run.startedOn() + ", completedOn = " + run.completedOn() + ", miles = " + run.miles() + ", location = " + locationS);
+        log.info("-->Parameters: id = " + run.id() + ", title = " + run.title() + ", startedOn = " + run.startedOn() + ", completedOn = " + run.completedOn() + ", miles = " + run.miles() + ", location = " + locationS);
         int updated = jdbcTemplate.update(sql, run.id(), run.title(), run.startedOn(), run.completedOn(), run.miles(), locationS);
         Assert.state(updated == 1, "Failed to create run " + run.id());
     }
@@ -79,9 +59,9 @@ public class MySqlRunRepository implements RunRepository {
     // Update RUN
     @Override
     public void update(Run run, Integer id) {
-        log.info("Executing --> jdbcRunRepository --> Updating Run with id: " + id);
+        log.info("Executing --> MySqlRepository --> Updating Run with id: " + id);
         String sql = "UPDATE run SET title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? WHERE id = ?";
-        log.info("SQL Statement:-------> " + sql);
+        log.info("-->SQL Statement:-------> " + sql);
         String locationS = run.location().name();
         int updated = jdbcTemplate.update("UPDATE run SET title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? WHERE id = ?",
                 run.title(), run.startedOn(), run.completedOn(), run.miles(), locationS, id);
@@ -90,20 +70,20 @@ public class MySqlRunRepository implements RunRepository {
 
     @Override
     public void delete(Integer id) {
-        log.info("Executing -->  jdbcRunRepository -->   Deleting Run with id: " + id);
+        log.info("Executing -->  MySqlRepository -->   Deleting Run with id: " + id);
         int updated = jdbcTemplate.update("DELETE FROM run WHERE id = ?", id);
         Assert.state(updated == 1, "Failed to delete run with id: " + id);
     }
 
     @Override
     public int count() {
-        log.info("Executing --> jdbcRunRepository --> count()="+jdbcTemplate.queryForObject("SELECT COUNT(*) FROM run", Integer.class));
+        log.info("Executing --> MySqlRepository --> count()="+jdbcTemplate.queryForObject("SELECT COUNT(*) FROM run", Integer.class));
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM run", Integer.class);
     }
 
     @Override
     public void saveAll(List<Run> runs) {
-        log.info("Executing --> jdbcRunRepository --> saveAll()");
+        log.info("Executing --> MySqlRepository --> saveAll()");
         runs.forEach(this::create);
     }
 }
